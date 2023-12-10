@@ -20,11 +20,11 @@ export default function Index() {
       globalData[0].formTitle,
     );
 
-    const groupId =
-      globalData[0].proof.map((val) => val.id) ||
-      localStorage.getItem("globalData");
+    let localData = JSON.parse(localStorage.getItem("globalData") || "").map(
+      (val) => val.id,
+    );
 
-    console.log(groupId);
+    const groupId = globalData[0].proof.map((val) => val.id) || localData;
 
     const { data } = response;
     console.log(data.Hash);
