@@ -59,7 +59,7 @@ export default function Index() {
     const newD = [...data];
     newD[0].proof = selectedIds;
     setData(newD);
-    router.push("/");
+    router.push("/form/1/deposit");
   }
 
   return (
