@@ -15,7 +15,7 @@ import AnonAadharLogin from "@/components/AnonAadharLogin";
 import SismoVerification from "@/components/Utilities/SismoVerification";
 
 export default function RenderForm() {
-  const { data, setData } = useGlobalData();
+  const { data } = useGlobalData();
   const router = useRouter();
   const [anonAadhaar] = useAnonAadhaar();
 

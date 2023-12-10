@@ -16,7 +16,7 @@ import SismoVerification from "@/components/Utilities/SismoVerification";
 import lighthouse from "@lighthouse-web3/sdk";
 
 export default function RenderForm() {
-  const { data, setData } = useGlobalData();
+  const { data } = useGlobalData();
   const { query } = useRouter();
   const [anonAadhaar] = useAnonAadhaar();
 

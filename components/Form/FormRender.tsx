@@ -39,6 +39,7 @@ const DynamicForm = (props: Props) => {
       const a = newData.findIndex((val) => val.id === data?.id);
       const b = newData[a].form.findIndex((val) => val.questionId === questionId);
       newData[a].form[b].answer = e.target.files[0];
+      localStorage.setItem("globalData", JSON.stringify(newData));
       setData(newData);
     }
   }
@@ -48,6 +49,7 @@ const DynamicForm = (props: Props) => {
     const a = newData.findIndex((val) => val.id === data?.id);
     const b = newData[a].form.findIndex((val) => val.questionId === questionId);
     newData[a].form[b].answer = e;
+    localStorage.setItem("globalData", JSON.stringify(newData));
     setData(newData);
   }
 

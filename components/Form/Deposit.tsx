@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ZETA_TOKEN_ABI } from "@/utils/constants";
+import { ZETA_TOKEN_ABI, ZK_FORM_FACTORY_ABI } from "@/utils/constants";
 import { useContractWrite, useNetwork } from "wagmi";
 import { parseEther } from "viem";
 import lighthouse from "@lighthouse-web3/sdk";
@@ -18,6 +18,14 @@ export default function Index() {
       process.env.NEXT_PUBLIC_LIGHTHOUSE_KEY as string,
       globalData[0].formTitle,
     );
+
+    const groupId = globalData[0].proof.map((val) => val.id);
+    console.log(groupId);
+
+    const {
+      data: { Name, Hash },
+    } = response;
+    await createForm({ args: [Name, "", Hash, groupId, amount, splits] });
   }
 
   const [amount, setAmount] = useState("");
@@ -40,10 +48,10 @@ export default function Index() {
     data,
     isLoading,
     isSuccess: isCreateFormSuccess,
-    write: createForm,
+    writeAsync: createForm,
   } = useContractWrite({
     address: zetaAddress,
-    abi: ZETA_TOKEN_ABI,
+    abi: ZK_FORM_FACTORY_ABI,
     functionName: "createForm",
   });
 
