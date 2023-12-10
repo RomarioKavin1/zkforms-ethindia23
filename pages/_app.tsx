@@ -9,7 +9,7 @@ import {
   RainbowKitProvider,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet, optimism } from "wagmi/chains";
+import { mainnet, optimism, polygonMumbai } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { GlobalDataProvider } from "@/hooks/useGlobalData";
 import { AnonAadhaarProvider } from "anon-aadhaar-react";
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const [ready, setReady] = useState(false);
 
   const { publicClient, chains } = configureChains(
-    [mainnet, optimism],
+    [polygonMumbai],
     [publicProvider()],
   );
 
