@@ -152,9 +152,6 @@ export default function Index() {
                   <div className="text-gray-400 dark:text-gray-400">
                     <PolygonLogo />
                   </div>
-                  <div className="pt-1 text-gray-400 dark:text-gray-400">
-                    <TheGraphLogo />
-                  </div>
                   <div className="pt-2 text-gray-400 dark:text-gray-400">
                     <ChainLinkLogo />
                   </div>
