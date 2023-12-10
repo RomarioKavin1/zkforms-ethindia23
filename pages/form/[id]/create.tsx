@@ -64,8 +64,6 @@ function QuestionCard() {
     setData(newGdata);
   }
 
-  return <GroupId />;
-
   return (
     <>
       <Head>
