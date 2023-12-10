@@ -1,3 +1,5 @@
+"use client";
+
 import { memo, ReactNode, ChangeEvent, useState } from "react";
 // react-hook-form
 import { FieldValues, useForm } from "react-hook-form";
