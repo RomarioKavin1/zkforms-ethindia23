@@ -4,10 +4,21 @@ import React, { useEffect, useState } from "react";
 import { ZETA_TOKEN_ABI } from "@/utils/constants";
 import { useContractWrite, useNetwork } from "wagmi";
 import { parseEther } from "viem";
+import lighthouse from "@lighthouse-web3/sdk";
+import useGlobalData from "@/hooks/useGlobalData";
 
 export default function Index() {
+  const { data: globalData, setData } = useGlobalData();
   const zetaAddress = "0xf1E3A5842EeEF51F2967b3F05D45DD4f4205FF40";
   const zkFormFactory = "0xC1C2d56Fa3644d34ED921BA3535E157189B3Db4A";
+
+  async function storeData() {
+    const response = await lighthouse.uploadText(
+      JSON.stringify(globalData),
+      process.env.NEXT_PUBLIC_LIGHTHOUSE_KEY as string,
+      globalData[0].formTitle,
+    );
+  }
 
   const [amount, setAmount] = useState("");
   const [splits, setSplits] = useState("");
@@ -103,6 +114,7 @@ export default function Index() {
                   Approve
                 </button>
                 <button
+                  onClick={storeData}
                   disabled={!isSuccess}
                   type="button"
                   className={`${
