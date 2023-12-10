@@ -23,7 +23,7 @@ export default function RenderForm() {
   const groups = data[0].proof;
 
   const claim: ClaimRequest[] = groups.map((group) => ({
-    groupId: group.groupId,
+    groupId: group.id,
   }));
   useEffect(() => {
     console.log("Anon Aadhaar status: ", anonAadhaar.status);
@@ -40,5 +40,5 @@ export default function RenderForm() {
   if (anonAadhaar.status !== "logged-in") return <AnonAadharLogin />;
   else if (anonAadhaar.status === "logged-in")
     return <SismoVerification claims={claim} />;
-  // return <DynamicForm id={query.id} onSubmit={onSubmit} />;
+  return <DynamicForm id={query.id} onSubmit={onSubmit} />;
 }

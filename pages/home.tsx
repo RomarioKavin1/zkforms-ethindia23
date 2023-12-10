@@ -16,7 +16,7 @@ export default function Index() {
     const newData = {
       id: newId,
       formTitle: "Untitled 🫥",
-      form: [],
+      form: [{}],
     };
     setData([...data, newData]);
     router.push(`/form/${newId}/create`);
@@ -72,34 +72,11 @@ export default function Index() {
                         </svg>
                       </button>
                     </div>
-
-                    {/* <a
-                      href="#"
-                      className="block shrink-0 rounded-full border border-black bg-white p-2.5 text-gray-600 shadow-sm hover:text-gray-700"
-                    >
-                      <span className="sr-only">Notifications</span>
-                      <svg
-                        xmlns="http:www.w3.org/2000/svg"
-                        className="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                        />
-                      </svg>
-                    </a> */}
                   </div>
-
                   <span
                     aria-hidden="true"
                     className="block h-6 w-px rounded-full bg-gray-200"
                   ></span>
-
                   <a href="#" className="block shrink-0">
                     <span className="sr-only">Profile</span>
 
@@ -124,52 +101,55 @@ export default function Index() {
           </div>
         </header>
 
-        <div className="flex justify-center">
-          <div className="mt-4 w-full rounded-[20px] bg-[#FFCF5340]/25 p-4 px-8 lg:w-10/12">
-            <header className="mb-4">
-              <div className="text-body text-primary !text-primary !font-medium">
-                Start a new form
-              </div>
-            </header>
-            <div className="grid w-full gap-x-11 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-              <div className="flex flex-col items-center justify-center gap-y-2">
-                <div className="flex flex-col items-center justify-center">
-                  <button
-                    className="group relative flex flex-col items-center justify-center"
-                    type="button"
-                    onClick={createForm}
-                  >
-                    <div className="relative mb-2 flex h-[200px] w-[200px] items-center justify-center overflow-hidden rounded-[20px] bg-white bg-[url('https:images.mintkudos.xyz/frontend/templates/allowlist-form.png')]">
-                      <div className="absolute z-10 h-full w-full cursor-pointer rounded-[20px] bg-white opacity-0 transition-all group-hover:opacity-20"></div>
-                      <div>
-                        <svg
-                          xmlns="http:www.w3.org/2000/svg"
-                          width="50"
-                          height="50"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="#FF007F"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <circle cx="12" cy="12" r="10" />
-                          <line x1="12" y1="8" x2="12" y2="16" />
-                          <line x1="8" y1="12" x2="16" y2="12" />
-                        </svg>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center justify-between gap-y-2 p-5 py-0 text-center">
-                      <div className="line-clamp-1">
-                        <div className="text-small text-primary">
-                          <div className="text-center">Blank</div>
-                        </div>
-                      </div>
-                    </div>
-                  </button>
-                  <div>&nbsp;</div>
+        <div className="mx-20 grid grid-cols-2">
+          <div className="m-2 rounded-2xl bg-[#FFCF5340]/25 p-10">
+            <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              Build from Scratch 👷🏻‍♂️
+            </h2>
+            <div className="flex flex-col items-center justify-center">
+              <button
+                className="group relative flex flex-col items-center justify-center"
+                type="button"
+                onClick={createForm}
+              >
+                <div className="relative mb-2 flex h-[200px] w-[200px] items-center justify-center overflow-hidden rounded-[20px] bg-white bg-[url('https:images.mintkudos.xyz/frontend/templates/allowlist-form.png')]">
+                  <div className="absolute z-10 h-full w-full cursor-pointer rounded-[20px] bg-white opacity-0 transition-all group-hover:opacity-20"></div>
+                  <div>
+                    <svg
+                      xmlns="http:www.w3.org/2000/svg"
+                      width="50"
+                      height="50"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="#FF007F"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="16" />
+                      <line x1="8" y1="12" x2="16" y2="12" />
+                    </svg>
+                  </div>
                 </div>
-              </div>
+                <div className="flex flex-col items-center justify-between gap-y-2 p-5 py-0 text-center">
+                  <div className="line-clamp-1">
+                    <div className="text-small text-primary">
+                      <div className="text-center">Blank</div>
+                    </div>
+                  </div>
+                </div>
+              </button>
+              <div>&nbsp;</div>
+            </div>
+          </div>
+
+          <div className="m-2 rounded-2xl bg-[#FFCF5340]/25 p-10">
+            <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+              Need Inspirations? Start from templates
+            </h2>
+
+            <div className="grid w-full gap-x-11 gap-y-8 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
               {dummyValues.map((val) => (
                 <div
                   key={val.id}
@@ -232,15 +212,15 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="flex justify-center">
-          <div className="mt-4 w-full p-4 px-1 lg:w-10/12">
-            <div className="mt-5 px-5">
-              <div className="text-body text-primary !text-primary !font-medium">
-                Your forms
-              </div>
+        <div className="mx-20 my-2 rounded-2xl bg-[#FFCF5340]/25 p-10">
+          <div className="w-full px-1 lg:w-10/12">
+            <div className="px-5">
+              <h2 className="mb-8 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+                Your forms to preview!
+              </h2>
             </div>
-            <div className="flex justify-center">
-              <div className="mt-4 grid gap-x-10 gap-y-8 pb-5 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            <div className="mx-4 flex justify-start">
+              <div className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {data
                   .filter(
                     (val) => Number(val.id) !== 100 && Number(val.id) !== 101,
@@ -258,7 +238,7 @@ export default function Index() {
                               <div className="flex w-full flex-col items-center">
                                 <div className="absolute -top-12 h-[350px] w-[350px]">
                                   <div
-                                    className="h-full w-full -rotate-12 bg-[#FFCF5340]/25"
+                                    className="h-full w-full -rotate-12 bg-white"
                                     style={{
                                       backgroundImage:
                                         "radial-gradient(50% 50% at 50% 50%,(59, 188, 157, 0.565) 0%, rgba(59, 188, 157, 0) 100%)",
