@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const group = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const query = `
     query($first: Int) {
@@ -16,11 +16,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({ query }),
       });
-      console.log(JSON.stringify({ query }))
+      console.log(JSON.stringify({ query }));
       console.log(graphqlResponse);
 
       const { data, errors } = await graphqlResponse.json();
@@ -37,3 +37,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).json({ error: "Method Not Allowed" });
   }
 };
+
+export default group;
