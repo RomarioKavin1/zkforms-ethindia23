@@ -68,10 +68,6 @@ function FormCreate() {
 
   return (
     <>
-      <Head>
-        <title></title>
-        <meta name="title" content="" />
-      </Head>
       <SideBar />
 
       <div className="relative flex min-h-screen w-full items-start justify-center overflow-auto bg-gradient-to-tr from-indigo-100 via-purple-50 to-teal-100 px-4">
