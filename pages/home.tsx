@@ -16,7 +16,8 @@ export default function Index() {
     const newData = {
       id: newId,
       formTitle: "Untitled 🫥",
-      form: [{}],
+      form: [],
+      proof: [],
     };
     setData([...data, newData]);
     router.push(`/form/${newId}/create`);
