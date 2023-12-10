@@ -48,6 +48,7 @@ export interface FormType {
 }
 export interface Group{
   name: string;
-  description: string;
-  groupId: string;
+  description?: string;
+  id: string;
+  isSelected?: boolean
 }
