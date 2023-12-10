@@ -20,9 +20,9 @@ export default function Index() {
       globalData[0].formTitle,
     );
 
-    let localData = JSON.parse(localStorage.getItem("globalData") || "").map(
-      (val) => val.id,
-    );
+    let localData = JSON.parse(
+      localStorage.getItem("globalData") || "",
+    )[0].proof.map((val) => val.id);
 
     const groupId = globalData[0].proof.map((val) => val.id) || localData;
 
