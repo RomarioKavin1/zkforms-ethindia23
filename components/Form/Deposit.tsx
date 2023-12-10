@@ -6,6 +6,7 @@ import { useContractWrite, useNetwork } from "wagmi";
 import { parseEther } from "viem";
 import lighthouse from "@lighthouse-web3/sdk";
 import useGlobalData from "@/hooks/useGlobalData";
+import LoadingButton from "@/components/LoadingButton";
 
 export default function Index() {
   const { data: globalData, setData } = useGlobalData();
@@ -19,13 +20,17 @@ export default function Index() {
       globalData[0].formTitle,
     );
 
-    const groupId = globalData[0].proof.map((val) => val.id);
+    const groupId =
+      globalData[0].proof.map((val) => val.id) ||
+      localStorage.getItem("globalData");
+
     console.log(groupId);
 
-    const {
-      data: { Name, Hash },
-    } = response;
-    await createForm({ args: [Name, "", Hash, groupId, amount, splits] });
+    const { data } = response;
+    console.log(data.Hash);
+    await createForm({
+      args: [data.Name, "", data.Hash, groupId, parseEther(amount), splits],
+    });
   }
 
   const [amount, setAmount] = useState("");

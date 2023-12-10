@@ -1,9 +1,5 @@
 import DynamicForm from "@/components/Form/FormRender";
-import {
-  AnonAadhaarProof,
-  LogInWithAnonAadhaar,
-  useAnonAadhaar,
-} from "anon-aadhaar-react";
+import { useAnonAadhaar } from "anon-aadhaar-react";
 // react-hook-form
 import { FieldValues } from "react-hook-form";
 // next
@@ -13,11 +9,10 @@ import useGlobalData from "@/hooks/useGlobalData";
 import { ClaimRequest } from "@sismo-core/sismo-connect-server";
 import AnonAadharLogin from "@/components/AnonAadharLogin";
 import SismoVerification from "@/components/Utilities/SismoVerification";
-import lighthouse from "@lighthouse-web3/sdk";
 
 export default function RenderForm() {
   const { data } = useGlobalData();
-  const { query } = useRouter();
+  const { query, push } = useRouter();
   const [anonAadhaar] = useAnonAadhaar();
 
   const groups = data[0].proof;
@@ -30,16 +25,16 @@ export default function RenderForm() {
   }, [anonAadhaar]);
 
   async function onSubmit(data: FieldValues) {
-    // console.log(data);
-    const uploadResponse = await lighthouse.uploadText(
-      data[0],
-      `${process.env.NEXT_PUBLIC_LIGHTHOUSE_KEY}`,
-      data[0].formTitle,
-    );
+    // const uploadResponse = await lighthouse.uploadText(
+    //   data[0],
+    //   `${process.env.NEXT_PUBLIC_LIGHTHOUSE_KEY}`,
+    //   data[0].formTitle,
+    // );
+    push("./success");
   }
 
   if (anonAadhaar.status !== "logged-in") return <AnonAadharLogin />;
   else if (anonAadhaar.status === "logged-in")
     return <SismoVerification claims={claim} />;
-  return <DynamicForm id={query.id} onSubmit={onSubmit} />;
+  return <DynamicForm id={query.id} onSubmit={onSubmit} buttonName="Submit" />;
 }

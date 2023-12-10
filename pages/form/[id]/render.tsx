@@ -30,7 +30,7 @@ export default function RenderForm() {
   }, [anonAadhaar]);
 
   async function onSubmit(data: FieldValues) {
-    router.push("/user/groupid");
+    router.push("/form/1/groupid");
   }
 
   return (

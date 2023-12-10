@@ -1,5 +1,8 @@
-import { AnonAadhaarProof, LogInWithAnonAadhaar, useAnonAadhaar } from "anon-aadhaar-react";
-import { useEffect } from "react";
+import {
+  AnonAadhaarProof,
+  LogInWithAnonAadhaar,
+  useAnonAadhaar,
+} from "anon-aadhaar-react";
 
 export default function AnonAadharLogin() {
   const [anonAadhaar] = useAnonAadhaar();
@@ -29,15 +32,16 @@ export default function AnonAadharLogin() {
 
           {/* Import the Connect Button component */}
           <div className="flex w-full place-content-center">
-          <div>
-        <LogInWithAnonAadhaar />
-              <p>{anonAadhaar?.status}</p>
+            <div>
+              <LogInWithAnonAadhaar />
             </div>
             <div>
               {anonAadhaar?.status === "logged-in" && (
                 <>
                   <p>✅ Proof is valid</p>
-                  <AnonAadhaarProof code={JSON.stringify(anonAadhaar.pcd, null, 2)} />
+                  <AnonAadhaarProof
+                    code={JSON.stringify(anonAadhaar.pcd, null, 2)}
+                  />
                 </>
               )}
             </div>
