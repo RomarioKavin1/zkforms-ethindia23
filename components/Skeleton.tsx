@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function Skeleton() {
-  return (
-    <div className="mx-auto w-full max-w-sm rounded-md border border-blue-300 p-4 shadow">
+  return [0, 0, 0].map((val, index) => (
+    <div key={val + index} className="mt-5 w-full rounded-md border p-4 shadow">
       <div className="flex animate-pulse space-x-4">
         <div className="h-10 w-10 rounded-full bg-slate-200"></div>
         <div className="flex-1 space-y-6 py-1">
@@ -17,5 +17,5 @@ export default function Skeleton() {
         </div>
       </div>
     </div>
-  );
+  ));
 }
