@@ -1,6 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import Skeleton from "../Skeleton";
 import useGlobalData from "@/hooks/useGlobalData";
+import { useRouter } from "next/router";
 
 interface Group {
   id: string;
@@ -13,11 +16,12 @@ export default function Index() {
   const [responseData, setResponseData] = useState<Group[]>([]);
   const [filteredData, setFilteredData] = useState<Group[]>();
   const [selectedIds, setSelectedIds] = useState<Group[]>([]);
+  const router = useRouter();
   const { data, setData } = useGlobalData();
 
   const fetchData = async () => {
     try {
-      const response = await fetch("/api/groups", {
+      const response = await fetch("/api/group", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +59,7 @@ export default function Index() {
     const newD = [...data];
     newD[0].proof = selectedIds;
     setData(newD);
+    router.push("/");
   }
 
   return (
@@ -171,8 +176,8 @@ export default function Index() {
               <p className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Create Group here
               </p>
-              <p className="mt-2 mt-4 text-3xl text-gray-500"></p>
-              <p className="mt-2 mt-4 text-lg text-gray-500">
+              <p className="mt-4 text-3xl text-gray-500"></p>
+              <p className="mt-4 text-lg text-gray-500">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi ea
                 impedit eveniet ratione nam. Neque consequuntur adipisci fugit
                 porro sint, pariatur illum unde deserunt omnis, repellat magnam
