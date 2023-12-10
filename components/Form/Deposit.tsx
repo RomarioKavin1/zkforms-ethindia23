@@ -1,9 +1,45 @@
 "use client";
 
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ZETA_TOKEN_ABI } from "@/utils/constants";
+import { useContractWrite, useNetwork } from "wagmi";
+import { parseEther } from "viem";
 
 export default function Index() {
-  const [approved, setApproved] = useState(false);
+  const zetaAddress = "0xf1E3A5842EeEF51F2967b3F05D45DD4f4205FF40";
+  const zkFormFactory = "0xC1C2d56Fa3644d34ED921BA3535E157189B3Db4A";
+
+  const [amount, setAmount] = useState("");
+  const [splits, setSplits] = useState("");
+
+  const { chain, chains } = useNetwork();
+
+  const {
+    data: approveData,
+    isLoading: isApproveLoading,
+    isSuccess,
+    write: approve,
+  } = useContractWrite({
+    address: zetaAddress,
+    abi: ZETA_TOKEN_ABI,
+    functionName: "approve",
+  });
+
+  const {
+    data,
+    isLoading,
+    isSuccess: isCreateFormSuccess,
+    write: createForm,
+  } = useContractWrite({
+    address: zetaAddress,
+    abi: ZETA_TOKEN_ABI,
+    functionName: "createForm",
+  });
+
+  useEffect(() => {
+    console.log(chain);
+  }, []);
+
   return (
     <>
       <div className="relative flex min-h-screen w-full items-start justify-center overflow-auto bg-gradient-to-r  from-indigo-100 via-purple-50 to-teal-100 px-4">
@@ -15,14 +51,10 @@ export default function Index() {
             <h1 className=" bg-gradient-to-r from-green-400 via-pink-500 to-purple-500 bg-clip-text py-6 pb-4 text-sm font-bold text-transparent opacity-75 sm:text-2xl md:text-center md:text-5xl">
               Deposit
             </h1>
-            <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
-              sunt dolores deleniti inventore quaerat mollitia?
-            </p>
 
             <form
               action=""
-              className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
+              className="mb-0 mt-2 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
               <p className="text-center text-lg font-medium">
                 Fill in your details
@@ -30,16 +62,25 @@ export default function Index() {
 
               <div className="w-full px-4 py-3">
                 <div className="lg:w-12/12 w-full px-4">
-                  <label
-                    id="jobtitle"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    How much do you want to deposit
+                  <label className="block text-sm font-medium text-gray-700">
+                    How much do you want to deposit?
                   </label>
                   <input
                     type="text"
-                    id="jobtitle"
-                    name="jobtitle"
+                    onChange={(e) => setAmount(e.target.value)}
+                    className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="w-full px-4 py-3">
+                <div className="lg:w-12/12 w-full px-4">
+                  <label className="block text-sm font-medium text-gray-700">
+                    How many splits you wanna make?
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => setSplits(e.target.value)}
                     className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   />
                 </div>
@@ -50,19 +91,22 @@ export default function Index() {
               </p>
               <div className="flex">
                 <button
-                  disabled={approved}
+                  disabled={isSuccess}
                   type="button"
+                  onClick={() => {
+                    approve({ args: [zkFormFactory, parseEther(amount)] });
+                  }}
                   className={`${
-                    approved && " opacity-50"
+                    isSuccess && " opacity-50"
                   } block w-full rounded-lg bg-purple-700 px-5 py-3 text-sm font-medium text-white`}
                 >
                   Approve
                 </button>
                 <button
-                  disabled={!approved}
+                  disabled={!isSuccess}
                   type="button"
                   className={`${
-                    !approved && "opacity-50"
+                    !isSuccess && "opacity-50"
                   } ml-3 block w-full rounded-lg bg-purple-700 px-5 py-3 text-sm font-medium text-white`}
                 >
                   Create Form
