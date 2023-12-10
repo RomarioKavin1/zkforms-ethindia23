@@ -13,7 +13,6 @@ import useGlobalData from "@/hooks/useGlobalData";
 import { ClaimRequest } from "@sismo-core/sismo-connect-server";
 import AnonAadharLogin from "@/components/AnonAadharLogin";
 import SismoVerification from "@/components/Utilities/SismoVerification";
-import lighthouse from "@lighthouse-web3/sdk";
 
 export default function RenderForm() {
   const { data, setData } = useGlobalData();
