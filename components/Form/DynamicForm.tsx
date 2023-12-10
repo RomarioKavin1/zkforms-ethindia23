@@ -15,7 +15,7 @@ type WrapperProps = {
 };
 
 type Props = {
-  id: string | string[];
+  id: any;
   onSubmit: (d: FieldValues) => void;
 };
 
